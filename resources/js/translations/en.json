@@ -1,0 +1,17 @@
+{
+  "nav-categories": {
+    "clear-filter": "Clear filter",
+    "title": "Categories",
+    "selected-category": "You have selected:"
+  },
+  "application-list": {
+    "application-item": {
+      "currency": "€",
+      "free-label": "Free"
+    },
+    "error": "There was an error processing the data.",
+    "error-subtitle": "Please try again later.",
+    "no-records": "No records were found",
+    "search-input": "Search by App"
+  }
+}

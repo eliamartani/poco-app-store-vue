@@ -1,0 +1,23 @@
+input[type=search],
+input[type=text] {
+  appearance: none;
+  background-clip: padding-box;
+  border: 1px solid $gray;
+  font-size: 1rem;
+  font-weight: 300;
+  outline: 0;
+  padding: 1rem;
+  resize: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    border-color: $teal;
+    cursor: auto;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+}
