@@ -1,4 +1,4 @@
-# Talkdesk assignment
+# Assignment
 
 ## Stack
 
