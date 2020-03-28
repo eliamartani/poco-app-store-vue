@@ -3,8 +3,8 @@
 ## Stack
 
 - HTML5
-- SASS
-- VueJS
+- SCSS
+- VueJs
 
 ## Requirement
 
@@ -15,42 +15,36 @@
 
 Execute the following command to install:
 
-```cmd
+```bash
 npm install
 ```
 
-or
+or just
 
-```cmd
+```bash
 yarn
 ```
 
 ## Running the project
 
-These are the available commands to run the project:
+These are the available commands to run within the project:
 
 | Command | Description |
 | ------- | ----------- |
-| `build`   | Compile/Transpile the `resources` folder and publishing the result in `public` folder |
-| `lint`    | Validates both `script` and `style` files for recommended project code styling |
-| `lint:fix` | Run and fix errors that could be found in both `script` and `style` files |
-| `lint:scripts` | Runs ecma script lint with what was defined at `.eslintrc.json` file |
-| `lint:styles` | Run style lint with what was defined at `.stylelintrc` file |
-| `prod` | Compile/Transpile the `resources` folder and publishing the result in `public` folder. This mode minify both `script` and `style` files |
-| `watch` | Similar to `build` with the addition of keeping watch over files. `browser-sync` will run the project over a created local server |
+| `build`   | Compile the `src` folder and publish into `dist` folder |
+| `deploy` | Publish the content into `gh-pages` |
+| `lint`    | Validates and fix files respecting the stablished code styling |
+| `serve` | Creates a local server to run the project |
+| `test:unit` | Validates all created tests |
 
 All these commands can be executed with:
 
-```cmd
+```bash
 npm run { command }
 ```
 
 or
 
-```cmd
+```bash
 yarn { command }
 ```
-
-## Publishing
-
-After executing the `prod` command, the content generated at `public` can be copied to the defined server
