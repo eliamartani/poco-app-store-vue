@@ -68,6 +68,7 @@ const store = new Vuex.Store({
     },
     setCategory({ commit }, category) {
       commit('setCategory', category)
+      commit('setPageIndex', 0)
     },
     setPageIndex({ commit }, pageIndex) {
       commit('setPageIndex', pageIndex)
@@ -77,6 +78,7 @@ const store = new Vuex.Store({
     },
     setTerm({ commit }, term) {
       commit('setTerm', term)
+      commit('setPageIndex', 0)
     }
   }
 })
