@@ -14,9 +14,7 @@
       </li>
     </ul>
     <div v-if="category" class="nav-categories__selected">
-      <small>
-        {{ $t('nav-categories.selected-category') }}
-      </small>
+      <small>{{ $t('nav-categories.selected-category') }}</small>
       <button :title="$t('nav-categories.clear-filter')" @click="setCategory(null)">
         {{ category }}
       </button>
@@ -28,12 +26,8 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters(['categories', 'category'])
-  },
-  methods: {
-    ...mapActions(['setCategory'])
-  }
+  computed: mapGetters(['categories', 'category']),
+  methods: mapActions(['setCategory'])
 }
 </script>
 

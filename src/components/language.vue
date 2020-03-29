@@ -1,7 +1,13 @@
 <template>
   <div class="language">
-    <button :class="{ active: locale === 'en' }" @click="setLanguage('en')">EN</button>
-    <button :class="{ active: locale === 'pt' }" @click="setLanguage('pt')">PT</button>
+    <button
+      v-for="lang in languages"
+      :key="lang.locale"
+      :class="{ active: locale === lang.locale }"
+      @click="setLanguage(lang.locale)"
+    >
+      {{ lang.text }}
+    </button>
   </div>
 </template>
 
@@ -9,7 +15,17 @@
 export default {
   data() {
     return {
-      locale: 'en'
+      locale: 'en',
+      languages: [
+        {
+          locale: 'en',
+          text: 'EN'
+        },
+        {
+          locale: 'pt',
+          text: 'PT'
+        }
+      ]
     }
   },
   methods: {

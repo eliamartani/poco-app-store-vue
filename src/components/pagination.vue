@@ -74,12 +74,8 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapGetters(['pageIndex'])
-  },
-  methods: {
-    ...mapActions(['setPageIndex'])
-  }
+  computed: mapGetters(['pageIndex']),
+  methods: mapActions(['setPageIndex'])
 }
 </script>
 

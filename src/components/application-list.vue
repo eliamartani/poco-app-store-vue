@@ -37,18 +37,11 @@ export default {
       searchInput: null
     }
   },
-  computed: {
-    ...mapGetters(['applications', 'error', 'pageSize'])
-  },
-  methods: {
-    ...mapActions(['setPageIndex', 'setTerm'])
-  },
   watch: {
-    searchInput(value) {
-      this.setPageIndex(0)
-      this.setTerm(value)
-    }
-  }
+    searchInput: 'setTerm'
+  },
+  computed: mapGetters(['applications', 'error', 'pageSize']),
+  methods: mapActions(['setTerm'])
 }
 </script>
 

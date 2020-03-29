@@ -14,9 +14,11 @@ const sumPrice = app => app.subscriptions.reduce((total, item) => total + (item.
 export default state => {
   const { apps, category, pageIndex, pageSize, term } = state
   const filteredList = apps
-    .filter(item => filterArray(item, term, category))
-    .sort(sortByName)
-    .sort(sortByTotalPrice)
+    ? apps
+        .filter(item => filterArray(item, term, category))
+        .sort(sortByName)
+        .sort(sortByTotalPrice)
+    : []
   const pagedList = filteredList.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)
 
   return {
