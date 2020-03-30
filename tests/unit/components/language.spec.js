@@ -5,7 +5,7 @@ describe('language.vue', () => {
   it('should mount component without error', () => {
     const wrapper = shallowMount(language, {
       mocks: {
-        $t: () => {}
+        $t: jest.fn()
       }
     })
 

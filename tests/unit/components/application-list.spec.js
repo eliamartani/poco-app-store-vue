@@ -15,7 +15,7 @@ describe('application-list.vue', () => {
 
   beforeEach(() => {
     mocks = {
-      $t: () => {}
+      $t: jest.fn()
     }
 
     actions = {
@@ -54,6 +54,10 @@ describe('application-list.vue', () => {
 
   it('should mount component without error', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
+  })
+
+  it('should read getter', () => {
+    expect(wrapper.vm.applications.list).toHaveLength(2)
   })
 
   it('should trigger when input changes', () => {

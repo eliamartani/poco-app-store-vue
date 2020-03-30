@@ -6,7 +6,7 @@ describe('application-item.vue', () => {
   it('should mount component without error', () => {
     const wrapper = shallowMount(applicationItem, {
       mocks: {
-        $t: () => {},
+        $t: jest.fn(),
         newId: () => v4uuid()
       },
       propsData: {
@@ -23,5 +23,11 @@ describe('application-item.vue', () => {
     })
 
     expect(wrapper.isVueInstance()).toBeTruthy()
+
+    const categoriesSpan = wrapper.findAll('.application-item__tags span')
+    const subscriptionsItem = wrapper.findAll('.application-item__footer li')
+
+    expect(categoriesSpan).toHaveLength(2)
+    expect(subscriptionsItem).toHaveLength(2)
   })
 })
