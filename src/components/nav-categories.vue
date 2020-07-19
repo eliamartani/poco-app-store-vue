@@ -1,6 +1,6 @@
 <template>
   <nav class="nav-categories" v-cloak>
-    <h2>{{ $t('nav-categories.title') }}</h2>
+    <h3>{{ $t('nav-categories.title') }}</h3>
     <ul class="nav-menu">
       <li v-for="(item, index) in categories" :key="`${index}_${newId()}`">
         <button
@@ -33,6 +33,8 @@ export default {
 
 <style lang="scss">
 .nav-categories {
+  margin: 0 1rem;
+
   &__selected {
     button {
       appearance: none;
@@ -56,9 +58,15 @@ export default {
         margin-bottom: 0;
       }
     }
+
+    @media (max-width: 768px) {
+      margin: 0;
+    }
   }
 
-  h2 {
+  h3 {
+    color: var(--gray-dark);
+
     @media (max-width: 768px) {
       font-size: 1.25rem;
     }
@@ -71,8 +79,6 @@ export default {
   }
 
   .nav-menu {
-    margin-top: 1rem;
-
     @media (max-width: 768px) {
       margin-top: 1rem;
       overflow-x: auto;

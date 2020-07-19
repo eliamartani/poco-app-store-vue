@@ -1,16 +1,19 @@
 <template>
-  <div id="app" class="flex-container">
+  <div id="app">
     <template v-if="loading">
-      <loading />
+      <Loading />
     </template>
     <template v-else>
-      <aside v-if="!error">
-        <language />
-        <nav-categories />
-      </aside>
-      <main>
-        <application-list />
-      </main>
+      <Header />
+      <div class="flex-container">
+        <aside v-if="!error">
+          <Language />
+          <NavCategories />
+        </aside>
+        <main>
+          <ApplicationList />
+        </main>
+      </div>
     </template>
   </div>
 </template>
@@ -21,10 +24,11 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: {
-    'application-list': () => import('./components/application-list'),
-    language: () => import('./components/language'),
-    loading: () => import('./components/loading'),
-    'nav-categories': () => import('./components/nav-categories')
+    ApplicationList: () => import('./components/application-list'),
+    Header: () => import('./components/header'),
+    Language: () => import('./components/language'),
+    Loading: () => import('./components/loading'),
+    NavCategories: () => import('./components/nav-categories')
   },
   computed: {
     ...mapGetters(['error', 'loading'])
@@ -43,10 +47,12 @@ export default {
 #app {
   aside {
     flex: 0;
+    min-width: 200px;
     order: 1;
 
     @media (max-width: 768px) {
       box-sizing: border-box;
+      min-width: auto;
       width: 100%;
     }
   }
