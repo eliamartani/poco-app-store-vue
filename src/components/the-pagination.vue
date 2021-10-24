@@ -1,14 +1,17 @@
+<script>
+const eventName = "page-change";
+</script>
+
 <script setup>
-import { computed, defineProps } from "vue";
-import { useStore } from "vuex";
+import { defineProps, defineEmits } from "vue";
 
 defineProps({
+  pageIndex: Number,
   pagingSize: Number,
 });
 
-const store = useStore();
-const pageIndex = computed(() => store.getters.pageIndex);
-const setPageIndex = (index) => store.dispatch("setPageIndex", index);
+const emit = defineEmits([eventName]);
+const setPageIndex = (index = 0) => emit(eventName, index);
 </script>
 
 <template>
