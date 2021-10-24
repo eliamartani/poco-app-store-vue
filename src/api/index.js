@@ -1,3 +1,5 @@
-import axios from 'axios'
+import axios from "axios";
 
-export const fetchApps = async () => axios.get('./apps.json')
+export function fetchApps() {
+  return axios.get("./apps.json");
+}

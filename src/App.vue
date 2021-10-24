@@ -1,64 +1,37 @@
-<template>
-  <div id="app">
-    <template v-if="loading">
-      <Loading />
-    </template>
-    <template v-else>
-      <Header />
-      <div class="flex-container">
-        <aside v-if="!error">
-          <Language />
-          <NavCategories />
-        </aside>
-        <main>
-          <ApplicationList />
-        </main>
-      </div>
-    </template>
-  </div>
-</template>
+<script setup>
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
-<script>
-import { mapActions, mapGetters } from 'vuex'
+import ApplicationList from "./components/application-list.vue";
+import TheFooter from "./components/the-footer.vue";
+import TheHeader from "./components/the-header.vue";
+import TheLoading from "./components/the-loading.vue";
+import NavCategories from "./components/nav-categories.vue";
 
-export default {
-  name: 'App',
-  components: {
-    ApplicationList: () => import('./components/application-list'),
-    Header: () => import('./components/header'),
-    Language: () => import('./components/language'),
-    Loading: () => import('./components/loading'),
-    NavCategories: () => import('./components/nav-categories')
-  },
-  computed: {
-    ...mapGetters(['error', 'loading'])
-  },
-  created() {
-    this.fetchInitialData()
-    this.setPageSize(3)
-  },
-  methods: {
-    ...mapActions(['fetchInitialData', 'setPageSize'])
-  }
-}
+const store = useStore();
+const error = computed(() => store.getters.error);
+const loading = computed(() => store.getters.loading);
+const setPageSize = (size) => store.dispatch("setPageSize", size);
+
+onMounted(() => {
+  store.dispatch("fetchInitialData");
+
+  setPageSize(3);
+});
 </script>
 
-<style lang="scss">
-#app {
-  aside {
-    flex: 0;
-    min-width: 200px;
-    order: 1;
-
-    @media (max-width: 768px) {
-      box-sizing: border-box;
-      min-width: auto;
-      width: 100%;
-    }
-  }
-  main {
-    flex: 1;
-    order: 2;
-  }
-}
-</style>
+<template>
+  <template v-if="loading">
+    <the-loading />
+  </template>
+  <template v-else>
+    <the-header class="app__header" />
+    <aside class="app__sidebar" v-if="!error">
+      <nav-categories />
+    </aside>
+    <main class="app__main">
+      <application-list />
+    </main>
+    <the-footer class="app__footer" />
+  </template>
+</template>

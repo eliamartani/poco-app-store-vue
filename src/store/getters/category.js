@@ -1,8 +1,6 @@
-export default state => {
-  const extractedCategories = Array.prototype.concat.apply(
-    [],
-    state.apps ? state.apps.map(item => item.categories) : []
-  )
+export default (state) => {
+  const categories = state.apps?.map((item) => item.categories) ?? [];
+  const extractedCategories = Array.prototype.concat.apply([], categories);
 
-  return [...new Set(extractedCategories)].sort()
-}
+  return [...new Set(extractedCategories)].sort();
+};

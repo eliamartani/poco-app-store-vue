@@ -1,102 +1,56 @@
-<template>
-  <div class="application-list">
-    <div class="application-list__header">
-      <input
-        type="search"
-        :disabled="error"
-        :placeholder="$t('application-list.search-input')"
-        v-model="searchInput"
-      />
-    </div>
-    <ul class="application-list__items">
-      <li v-for="application in applications.list" :key="application.id">
-        <application-item :application="application" />
-      </li>
-      <li v-if="error">
-        <p class="application-list__error-title">{{ $t('application-list.error') }}</p>
-        <p class="application-list__error-subtitle">{{ $t('application-list.error-subtitle') }}</p>
-      </li>
-      <li v-if="!applications.list.length && !error">
-        <h1>{{ $t('application-list.no-records') }}</h1>
-      </li>
-    </ul>
-    <pagination v-if="applications.totalPages" :paging-size="applications.totalPages" />
-  </div>
-</template>
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 
-<script>
-import { mapGetters, mapActions } from 'vuex'
+import ApplicationItem from "./application-item.vue";
+import TheSearch from "./the-search.vue";
 
-export default {
-  components: {
-    'application-item': () => import('./application-item'),
-    pagination: () => import('./pagination')
-  },
-  data() {
-    return {
-      searchInput: null
-    }
-  },
-  watch: {
-    searchInput: 'setTerm'
-  },
-  computed: mapGetters(['applications', 'error', 'pageSize']),
-  methods: mapActions(['setTerm'])
-}
+const store = useStore();
+const { tm } = useI18n();
+const applications = computed(() => store.getters.applications);
+const error = computed(() => store.getters.error);
 </script>
+
+<template>
+  <the-search />
+
+  <ul class="application-list__items">
+    <li class="application-list__item" v-for="application in applications.list" :key="application.id">
+      <application-item :application="application" />
+    </li>
+
+    <li v-if="error">
+      <p class="application-list__title">{{ tm("application-list.error") }}</p>
+      <p class="application-list__subtitle">{{ tm("application-list.error-subtitle") }}</p>
+    </li>
+
+    <li v-if="!applications.list.length && !error">
+      <p class="application-list__title">
+        {{ tm("application-list.no-records") }}
+      </p>
+    </li>
+  </ul>
+</template>
 
 <style lang="scss">
 .application-list {
-  &__header {
-    margin-bottom: 2rem;
-
-    input[type='search'],
-    input[type='text'] {
-      appearance: none;
-      background-clip: padding-box;
-      background-image: url('../assets/search.png');
-      background-position: right 1rem center;
-      background-repeat: no-repeat;
-      border: 1px solid var(--gray);
-      box-sizing: border-box;
-      font-size: 1rem;
-      font-weight: 300;
-      outline: 0;
-      padding: 1rem 2.5rem 1rem 1rem;
-      resize: none;
-      transition: border-color 0.2s ease;
-      width: 100%;
-
-      &:hover,
-      &:focus {
-        border-color: var(--teal);
-        cursor: auto;
-      }
-
-      &::-ms-clear {
-        display: none;
-      }
+  &__item {
+    & + & {
+      margin-top: 1.5rem;
     }
   }
 
-  &__error {
-    &-title {
-      color: var(--teal);
-      font-size: 2.125rem;
-      font-weight: 400;
-    }
-
-    &-subtitle {
-      color: var(--gray-dark);
-      font-size: 1.5rem;
-      font-weight: 400;
-    }
+  &__title {
+    color: var(--teal);
+    font-size: 1.5rem;
+    font-weight: 400;
   }
 
-  &__items {
-    > li {
-      margin-bottom: 1.5rem;
-    }
+  &__subtitle {
+    color: var(--gray-dark);
+    font-size: 1.125rem;
+    font-weight: 400;
   }
 }
 </style>

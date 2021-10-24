@@ -1,50 +1,58 @@
+<script setup>
+import { defineProps } from "vue";
+import { useI18n } from "vue-i18n";
+
+defineProps({
+  application: Object,
+});
+
+const { tm } = useI18n();
+</script>
+
 <template>
-  <div class="application-item">
+  <article class="application-item">
     <div class="application-item__content">
       <div class="application-item__description">
-        <h1>{{ application.name }}</h1>
-        <p>{{ application.description }}</p>
+        <h1 class="application-item__title">{{ application.name }}</h1>
+        <p class="application-item__description">{{ application.description }}</p>
       </div>
+
       <div class="application-item__tags">
-        <span v-for="(category, index) in application.categories" :key="`${index}_${newId()}`">
+        <span class="application-item__tag" v-for="(category, index) in application.categories" :key="`${index}_tags`">
           {{ category }}
         </span>
       </div>
     </div>
-    <div class="application-item__footer">
+
+    <div class="application-item__subscriptions">
       <ul>
-        <li v-for="(subscription, index) in application.subscriptions" :key="`${index}_${newId()}`">
-          <span>{{ subscription.name }}</span>
-          <h3>
+        <li
+          class="application-item__subscription"
+          v-for="(subscription, index) in application.subscriptions"
+          :key="`${index}_subscription`"
+        >
+          <span class="application-item__subscription-name">{{ subscription.name }}</span>
+          <h3 class="application-item__subscription-price">
             <template v-if="subscription.price">
               {{ subscription.price.toFixed(2) }}
-              <sup>{{ $t('application-list.application-item.currency') }}</sup>
+              <sup class="application-item__subscription-currency">
+                {{ tm("application-list.application-item.currency") }}
+              </sup>
             </template>
-            <template v-else>{{ $t('application-list.application-item.free-label') }}</template>
+            <template v-else>{{ tm("application-list.application-item.free-label") }}</template>
           </h3>
         </li>
       </ul>
     </div>
-  </div>
+  </article>
 </template>
-
-<script>
-export default {
-  props: {
-    application: {
-      type: Object,
-      required: true
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 .application-item {
   background: var(--white);
   box-shadow: 0 2px 3px 0 #e8ebed, 0 0 3px 0 #e8ebed;
   padding: 1.5rem;
-  transition: background-color 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
 
   &:hover {
     background: rgba(244, 247, 246, 0.3);
@@ -67,17 +75,34 @@ export default {
     }
   }
 
-  &__footer {
+  &__subscription {
+    align-items: baseline;
+    display: inline-flex;
+    margin-bottom: 0;
+    padding: 0 1rem 0 0;
+
+    &-currency {
+      font-size: 1rem;
+    }
+
+    &-name {
+      color: var(--gray-dark);
+    }
+
+    &-name + &-price {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__subscriptions {
     display: flex;
+  }
 
-    li {
-      align-items: baseline;
-      display: inline-flex;
-      margin-bottom: 0;
-      padding: 0 1rem 0 0;
-
-      span {
-        color: var(--gray-dark);
+  &__tag {
+    & + & {
+      &::before {
+        content: "/";
+        margin: 0 0.3rem;
       }
     }
   }
@@ -89,14 +114,10 @@ export default {
     @media (max-width: 768px) {
       order: 1;
     }
+  }
 
-    span {
-      & + span {
-        &::before {
-          content: '/';
-        }
-      }
-    }
+  &__title {
+    font-size: 1.5rem;
   }
 }
 </style>

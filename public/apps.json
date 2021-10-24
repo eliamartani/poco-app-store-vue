@@ -11,15 +11,14 @@
       },
       {
         "name": "Professional",
-        "price": 35.00
+        "price": 35.0
       }
     ]
   },
   {
     "id": "470fedc5-489e-5acb-a200-c85adaa18356",
     "name": "Power Dialer",
-    "description":
-      "Auto dialer that will help increase your connect rates and talk time.",
+    "description": "Auto dialer that will help increase your connect rates and talk time.",
     "categories": ["Dialer"],
     "subscriptions": [
       {
@@ -28,19 +27,18 @@
       },
       {
         "name": "Professional",
-        "price": 45.00
+        "price": 45.0
       },
       {
         "name": "Premium",
-        "price": 60.00
+        "price": 60.0
       }
     ]
   },
   {
     "id": "52714d80-e3c4-5593-b9a3-e2ff484be372",
     "name": "Smart Text",
-    "description":
-      "Use SMS to help you communicate with your customers.",
+    "description": "Use SMS to help you communicate with your customers.",
     "categories": ["Channels"],
     "subscriptions": [
       {
@@ -69,11 +67,11 @@
     "subscriptions": [
       {
         "name": "Starter",
-        "price": 20.00
+        "price": 20.0
       },
       {
         "name": "Plus",
-        "price": 45.00
+        "price": 45.0
       }
     ]
   },
@@ -85,15 +83,14 @@
     "subscriptions": [
       {
         "name": "Professional",
-        "price": 60.00
+        "price": 60.0
       }
     ]
   },
   {
     "id": "7f89f001-9d7d-52f1-82cb-8f44eb1e4680",
     "name": "Video Contacts",
-    "description":
-      "Communicate with your customers and agents using video calls.",
+    "description": "Communicate with your customers and agents using video calls.",
     "categories": ["Productivity"],
     "subscriptions": [
       {
@@ -102,7 +99,7 @@
       },
       {
         "name": "Professional",
-        "price": 25.00
+        "price": 25.0
       }
     ]
   },
@@ -118,7 +115,7 @@
       },
       {
         "name": "Professional",
-        "price": 30.00
+        "price": 30.0
       }
     ]
   },
@@ -134,11 +131,11 @@
       },
       {
         "name": "Professional",
-        "price": 50.00
+        "price": 50.0
       },
       {
         "name": "Enterprise",
-        "price": 100.00
+        "price": 100.0
       }
     ]
   },
@@ -154,7 +151,7 @@
       },
       {
         "name": "Professional",
-        "price": 40.00
+        "price": 40.0
       }
     ]
   }

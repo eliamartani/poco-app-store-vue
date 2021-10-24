@@ -18,7 +18,7 @@
   transform: translate(-50%, -50%);
   top: 50%;
 
-  div {
+  & > div {
     box-sizing: border-box;
     display: block;
     position: absolute;

@@ -1,11 +1,25 @@
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
+
+const store = useStore();
+const { tm } = useI18n();
+const category = computed(() => store.getters.category);
+const categories = computed(() => store.getters.categories);
+const setCategory = (category) => store.dispatch("setCategory", category);
+</script>
+
 <template>
-  <nav class="nav-categories" v-cloak>
-    <h3>{{ $t('nav-categories.title') }}</h3>
-    <ul class="nav-menu">
-      <li v-for="(item, index) in categories" :key="`${index}_${newId()}`">
+  <nav class="nav-categories">
+    <h1 class="nav-categories__title">{{ tm("nav-categories.title") }}</h1>
+
+    <ul class="nav-categories__list">
+      <li class="nav-categories__item" v-for="(item, index) in categories" :key="`${index}_nav`">
         <button
+          class="nav-categories__category"
           :class="{
-            active: category === item
+            'nav-categories__category--active': category === item,
           }"
           @click="setCategory(item)"
         >
@@ -13,112 +27,71 @@
         </button>
       </li>
     </ul>
-    <div v-if="category" class="nav-categories__selected">
-      <small>{{ $t('nav-categories.selected-category') }}</small>
-      <button :title="$t('nav-categories.clear-filter')" @click="setCategory(null)">
-        {{ category }}
-      </button>
-    </div>
   </nav>
 </template>
-
-<script>
-import { mapActions, mapGetters } from 'vuex'
-
-export default {
-  computed: mapGetters(['categories', 'category']),
-  methods: mapActions(['setCategory'])
-}
-</script>
-
 <style lang="scss">
 .nav-categories {
-  margin: 0 1rem;
-
-  &__selected {
-    button {
-      appearance: none;
-      background: transparent;
-      background-image: url('../assets/close.png');
-      background-position: right center;
-      background-repeat: no-repeat;
-      border: none;
-      border-radius: 20px;
-      box-sizing: border-box;
-      color: var(--gray-dark);
-      cursor: pointer;
-      display: block;
-      font-size: 0.75rem;
-      margin: 1rem;
-      max-width: 150px;
-      padding: 0 1.25rem 0 0;
-      text-transform: uppercase;
-
-      @media (max-width: 768px) {
-        margin-bottom: 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-      margin: 0;
-    }
-  }
-
-  h3 {
-    color: var(--gray-dark);
-
-    @media (max-width: 768px) {
-      font-size: 1.25rem;
-    }
-  }
-
-  small {
-    color: var(--teal);
+  &__category {
+    appearance: none;
+    background: var(--gray);
+    border: 0;
+    border-bottom: 1px solid #e6eaea;
+    border-radius: 0;
+    color: var(--black);
+    cursor: pointer;
     display: block;
-    margin: 2rem 1rem 1rem;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 1rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: background 0.1s ease, color 0.1s ease;
+    width: 100%;
+
+    &:not(&--active):hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    &--active {
+      background: var(--white);
+      color: var(--teal);
+
+      &::after {
+        background-image: url("../assets/close.png");
+        background-position: right center;
+        background-repeat: no-repeat;
+        color: var(--gray-dark);
+        content: "";
+        display: block;
+        height: 16px;
+        opacity: 0.7;
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        width: 16px;
+      }
+    }
   }
 
-  .nav-menu {
-    @media (max-width: 768px) {
-      margin-top: 1rem;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
+  &__item {
+    cursor: pointer;
+    display: inline-block;
 
-    button {
-      appearance: none;
-      background: var(--gray);
-      border: 0;
-      border-bottom: 1px solid #e6eaea;
-      border-radius: 0;
-      color: var(--black);
-      cursor: pointer;
+    @media (min-width: 768px) {
       display: block;
-      font-size: 17px;
-      font-weight: 300;
-      padding: 1rem;
-      position: relative;
-      text-align: left;
-      text-decoration: none;
-      transition: background-color 0.2s ease, color 0.1s ease;
-      width: 100%;
-
-      &.active {
-        color: var(--teal);
-      }
-
-      &:hover {
-        background: var(--white);
-      }
     }
+  }
 
-    li {
-      cursor: pointer;
+  &__list {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-      @media (max-width: 768px) {
-        display: inline-block;
-      }
-    }
+  &__title {
+    color: var(--gray-dark);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

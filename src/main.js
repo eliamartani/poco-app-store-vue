@@ -1,23 +1,18 @@
-import Vue from 'vue'
+import { createApp } from "vue";
 
 // utils
-import { setVueI18n } from './i18n'
-import uuidMixin from './shared/uuid-mixin'
-import store from './store'
+import { i18n } from "./i18n";
+import { store } from "./store";
 
 // components
-import App from './App.vue'
+import App from "./App.vue";
 
 // scss
-import './main.scss'
+import "./main.scss";
 
-Vue.config.productionTip = false
+const app = createApp(App);
 
-Vue.mixin(uuidMixin)
+app.use(store);
+app.use(i18n);
 
-new Vue({
-  render: h => h(App),
-  store,
-  // Set default language to english
-  i18n: setVueI18n('en')
-}).$mount('#app')
+app.mount("#app");
