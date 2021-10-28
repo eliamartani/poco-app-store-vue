@@ -24,14 +24,14 @@ npm install
 
 These are the available commands to run within the project
 
-| Command       | Description                                                     |
-| ------------- | --------------------------------------------------------------- |
-| `build`       | Compile the `src` folder and publish into `dist` folder         |
-| `lint`        | Validates and fix files respecting the stablished code styling  |
-| `lint:format` | Format files respecting the stablished code styling by Prettier |
-| `serve`       | Runs the built project                                          |
-| `start`       | Run the project in dev mode                                     |
-| `test`        | Validates all created tests                                     |
+| Command         | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| `build`         | Compile the `src` folder and publish into `dist` folder         |
+| `lint`          | Validates and fix files respecting the stablished code styling  |
+| `lint:prettier` | Format files respecting the stablished code styling by Prettier |
+| `serve`         | Runs the built project                                          |
+| `start`         | Run the project in dev mode                                     |
+| `test`          | Validates all created tests                                     |
 
 All these commands can be executed with
 
