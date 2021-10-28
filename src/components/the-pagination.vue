@@ -3,8 +3,6 @@ const eventName = "page-change";
 </script>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
-
 defineProps({
   pageIndex: Number,
   pagingSize: Number,

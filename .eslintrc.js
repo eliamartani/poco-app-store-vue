@@ -8,4 +8,8 @@ module.exports = {
     "vue/require-default-prop": "off",
   },
   ignorePatterns: ["node_modules/*"],
+  globals: {
+    defineEmits: "readonly",
+    defineProps: "readonly",
+  },
 };
