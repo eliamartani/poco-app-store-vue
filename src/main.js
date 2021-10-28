@@ -8,7 +8,7 @@ import { store } from "./store";
 import App from "./App.vue";
 
 // scss
-import "./main.scss";
+import "./styles/main.scss";
 
 const app = createApp(App);
 
